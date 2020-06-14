@@ -47,11 +47,8 @@ export default {
 
     // this should be only for admins
     methods: {
-        ...mapActions('users', {
-            getAllUsers: 'getAll',
-            deleteUser: 'delete'
-        })
-    }
+        ...mapActions('users', { getAllUsers: 'getAll', deleteUser: 'delete' })
+         }
 };
 </script>
 <style>

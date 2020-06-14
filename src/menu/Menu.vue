@@ -2,7 +2,7 @@
     <div class="menu">
         <h1> <router-link to="/home">Home</router-link></h1>
         <h1> <router-link to="/favourites">Favourites</router-link></h1>
-        <h1> <router-link to="/findrecipe">Find Recipe</router-link></h1>
+        <h1> <router-link to="/findRecipes">Find Recipe</router-link></h1>
         <h1> <router-link to="/Tranding">Tranding</router-link></h1>
         <h1> <router-link to="/login">Log Out</router-link></h1>
     </div>

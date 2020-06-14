@@ -1,0 +1,21 @@
+
+/* main classes */
+
+.margin-top-40{
+    margin-top: 40px;
+}
+
+.margin-bot-40{
+    margin-top: 40px;
+}
+
+#myfridgechef{
+    background-image: url("/src/assets/images/pattern_bg.png");
+    background-color: #2a2a2a;
+    background-size: cover;
+}
+
+#phoneView{
+    min-height: 100vh;
+    background-color: #ffffff;
+}
