@@ -42,13 +42,13 @@
                     <br>
                     <table class="table table-striped">
                     <tbody>
-                        <tr v-for="item in recipeInView.ingredientLines" :class="{owned:item.ownedIngridients}" v-bind:title="item.wholeLine" :key="item.wholeLine" @click="$set(item, 'ownedIngridients', !item.ownedIngridients)"><td>{{item.wholeLine}}</td></tr>
+                        <tr v-for="item in recipeInView.ingredientLines" :class="{owned:item.ownedIngridients}" v-bind:title="item.wholeLine" :key="item.id" @click="$set(item, 'ownedIngridients', !item.ownedIngridients)"><td><b>{{item.ingredient}}</b> <i>{{item.wholeLine}}</i></td></tr>
                     </tbody>
                     </table>
                       <div class="spacer_40"></div>
                     <h5>Preparation Steps:</h5>
                     <ul class="list-group list-group-flush">
-                        <li v-for="(item,index) in recipeInView.preparationSteps" v-bind:title="item" :key="item" class="list-group-item"><span class="preparationStep">{{index+1}} </span>{{item}}</li>
+                        <li v-for="(item,index) in recipeInView.preparationSteps" v-bind:title="item" :key="item.id" class="list-group-item"><span class="preparationStep">{{index+1}} </span>{{item}}</li>
                     </ul>
                     <div class="spacer_40"></div>
 
@@ -83,7 +83,7 @@
         <!-- recipe find request form  -->
        <form @submit.prevent="findRecipe_handleSubmit">
         <input v-model="ingredients" class="form-control margin-top-40" type="text" placeholder="My ingredients..">
-        <button class="btn btn-primary margin-top-40"><i class="fa fa-search"></i> Find Recipe</button>
+        <button class="btn btn-primary margin-top-40" v-bind:class="{ disabled: disableSearchBtb.value}"><i class="fa fa-search"></i> Find Recipe</button>
         <!-- <p v-show="status.searching">Searching Recipe</p> -->
        </form>
 
@@ -140,7 +140,8 @@ export default {
       showModal: false,
       recipeInView:[],
       searchAnim:{"play":"false"},
-      ownedIngridients: []
+      ownedIngridients: [],
+      disableSearchBtb:{"value":false}
     }
   },
     components: {
@@ -163,16 +164,21 @@ export default {
         // ...mapActions('users', { findRecipe: 'findRecipe' }),
 
         findRecipe_handleSubmit (e) {
-            this.submitted = true;
-            const { ingredients } = this;
+                const { ingredients } = this;
+         
 
-            // clear previous search result
-            this.foundRecipesArr = [];
-
-            if (ingredients) {
+            if (ingredients && this.disableSearchBtb.value == false) {
+                this.submitted = true;
+            
+                // clear previous search result
+                this.foundRecipesArr = [];
                 var ingredientsArr = ingredients.split(" ");
                 console.log("findRecipe -> ingredientes --",ingredientsArr);
+
+                var disableBtn = this.disableSearchBtb;
                 
+                disableBtn.value = true;
+
                 var arr = this.foundRecipesArr;
                 var playAnim = this.searchAnim;
                 playAnim.play = true;
@@ -196,6 +202,7 @@ export default {
                     arr.push(recipe)
                 }
                 console.log("foundRecipesArr",arr);
+                disableBtn.value = false;
                 playAnim.play = false;
                 } 
 

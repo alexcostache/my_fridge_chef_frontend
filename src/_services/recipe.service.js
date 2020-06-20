@@ -35,9 +35,9 @@ export const recipeService = {
 
 async function findRecipe(data){
   
-  // const Q = data.ingredientsArr.toString().replace(/,/g, ' ');
+  const Q = data.ingredientsArr.toString().replace(/,/g, ' ');
 
-  const Q = "apple carrot"
+  // const Q = "apple carrot"
 
   const requestOptions = {
     method: 'GET',
@@ -48,9 +48,8 @@ async function findRecipe(data){
       "useQueryString":true
       },
       "params":{
-        "FAT_KCALMax":"1000",
         "maxTotalTimeInSeconds":"7200",
-        "allowedAttribute":"",
+        "allowedAttribute":"vegetarian",
         "q":Q,
         "start":"0",
         "maxResult":"18"
