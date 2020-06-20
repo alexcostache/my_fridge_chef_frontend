@@ -8,14 +8,14 @@
 .margin-bot-40{
     margin-top: 40px;
 }
-
+.spacer_40{
+    min-height: 40px;
+}
 /* navigation  */
 nav{
     margin: 0;
     padding: 0;
     background-color: aquamarine;
-  
-
 }
 
 .navigation{
@@ -79,6 +79,31 @@ nav{
     margin: 0 auto;
     background-position: center;
 }
+
+.preparationStep{
+    font-size: 1.8em;
+}
+
+.owned{
+    background-color: #98FB98 !important;
+}
+.shadow-tip{
+    background-color: #ffffcc;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+
+.tag{
+    display: inline-block;
+    border: 1px solid #333;
+    text-align: center;
+    border-radius: 2px;
+    color: #333;
+    padding: 2px 10px;
+    margin: 5px 10px;
+}
+
 
 /* mobile  */
 @media only screen and (min-width: 350px) {

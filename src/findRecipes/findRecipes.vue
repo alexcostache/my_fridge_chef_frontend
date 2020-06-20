@@ -11,10 +11,65 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="card recipeCard col-md-12">
-                    <h5 class="card-title">{{recipeInView.name }}</h5>
+                    <h3 class="card-title">{{recipeInView.name }}</h3>
                     <img class="card-img-top" v-bind:src="recipeInView.images[0]" alt="Card image cap">
                     <div class="card-body">
+                    <h5>Description:</h5>
                     <p class="card-text">{{recipeInView.description}}</p>
+
+                    <h5>Tags:</h5>
+
+                    <div>Course
+                    <div v-for="item in recipeInView.course" v-bind:title="item[0]" :key="item[0]" class="tag">{{item["display-name"]}}</div>
+                    </div>
+
+                    <div>Dish 
+                    <div v-for="item in recipeInView.dish" v-bind:title="item[0]" :key="item[0]" class="tag">{{item["display-name"]}}</div>
+                    </div>
+
+                    <div>Technique
+                    <div v-for="item in recipeInView.technique" v-bind:title="item[0]" :key="item[0]" class="tag">{{item["display-name"]}}</div>
+                    </div>
+                   
+                    <div class="spacer_40"></div>
+                   <div class="color-box space">
+                    <div class="shadow-tip">
+                        <i class="fa fa-sun-o"></i> <strong>Tip: </strong>Cick on each ingredient you already have
+                    </div>
+                    </div>
+                    <div class="spacer_40"></div>
+                    <h5>Ingredientes:</h5>
+                    <br>
+                    <table class="table table-striped">
+                    <tbody>
+                        <tr v-for="item in recipeInView.ingredientLines" :class="{owned:item.ownedIngridients}" v-bind:title="item.wholeLine" :key="item.wholeLine" @click="$set(item, 'ownedIngridients', !item.ownedIngridients)"><td>{{item.wholeLine}}</td></tr>
+                    </tbody>
+                    </table>
+                      <div class="spacer_40"></div>
+                    <h5>Preparation Steps:</h5>
+                    <ul class="list-group list-group-flush">
+                        <li v-for="(item,index) in recipeInView.preparationSteps" v-bind:title="item" :key="item" class="list-group-item"><span class="preparationStep">{{index+1}} </span>{{item}}</li>
+                    </ul>
+                    <div class="spacer_40"></div>
+
+                    <div>
+                    <h5>Nutrition Estimates: </h5>
+                    <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Attribute</th>
+                        <th scope="col">Value</th>
+                        <th scope="col">Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item) in recipeInView.nutritionEstimates" v-bind:title="item.attribute" :key="item.attribute" scope="row"><td>{{item.attribute}}</td><td>{{item.value}}</td><td>{{item.unit.plural}}</td></tr>
+                    </tbody>
+                    </table>
+                    </div>
+                    <div class="spacer_40"></div>
+                 
+
                     <button type="button" class="btn btn-outline-primary" v-on:click="like(index)"><i class="fa fa-thumbs-o-up"></i> Like</button>
                     <button type="button" class="btn btn-outline-success" v-on:click="addToFavorites(index)"><i class="fa fa-heart red"></i> Add to Favorites</button>
 
@@ -84,7 +139,8 @@ export default {
       submitted: false,
       showModal: false,
       recipeInView:[],
-      searchAnim:{"play":"false"}
+      searchAnim:{"play":"false"},
+      ownedIngridients: []
     }
   },
     components: {
