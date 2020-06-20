@@ -40,20 +40,3 @@ export default {
 };
 </script>
 
-<style scoped>
-    nav{
-        margin: 0;
-        padding: 0;
-        background-color: aquamarine;
-
-    }
-    #menuBtn{
-        font-size: 30px;
-        margin-left: 90%;
-    }
-    #name{
-        width: 50%;
-    }
-
-</style>
-

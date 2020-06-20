@@ -57,6 +57,6 @@ async function findRecipe(data){
         }
 };
 
-return axios("https://yummly2.p.rapidapi.com/feeds/search", requestOptions);
+return await axios("https://yummly2.p.rapidapi.com/feeds/search", requestOptions);
     
 }

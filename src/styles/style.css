@@ -9,10 +9,34 @@
     margin-top: 40px;
 }
 
+/* navigation  */
+nav{
+    margin: 0;
+    padding: 0;
+    background-color: aquamarine;
+  
+
+}
+
+.navigation{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+#menuBtn{
+    font-size: 30px;
+    margin-left: 90%;
+}
+#name{
+    width: 50%;
+}
+
 #myfridgechef{
     background-image: url("/src/assets/images/pattern_bg.png");
     background-color: #2a2a2a;
     background-size: cover;
+    height: 100%;
 }
 
 #phoneView{
@@ -26,8 +50,35 @@
 
 .card{
     margin: 40px auto;
+
 }
 
+.recipeCard{
+    width: 100% !important;
+}
+
+#recipe{
+    border: 1px solid #444444;
+    position: sticky;
+    top: 90px;
+    box-shadow: 0px 0px 20px #444444;
+    background-color: #ffffff;
+    z-index: 1000;
+}
+
+.close {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+
+#searchAnimation{
+    background-image: url("/src/assets/images/search.gif");
+    min-height: 500px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    background-position: center;
+}
 
 /* mobile  */
 @media only screen and (min-width: 350px) {
@@ -48,3 +99,5 @@
         width: 40rem;
     }
 }
+
+
