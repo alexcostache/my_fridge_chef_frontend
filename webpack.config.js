@@ -1,5 +1,7 @@
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+require("babel-polyfill");
+
 module.exports = {
     mode: 'development',
     resolve: {
@@ -30,5 +32,8 @@ module.exports = {
         config: JSON.stringify({
             apiUrl: 'http://localhost:4000'
         })
-    }
+    },
+    entry: ["babel-polyfill", "./src/index.js"]
 }
+
+

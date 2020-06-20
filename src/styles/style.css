@@ -19,3 +19,32 @@
     min-height: 100vh;
     background-color: #ffffff;
 }
+
+.displayInLine{
+    display: inline-block;
+}
+
+.card{
+    margin: 40px auto;
+}
+
+
+/* mobile  */
+@media only screen and (min-width: 350px) {
+    .card{
+        width: 18rem;
+    }
+}
+/* tablet  */
+@media only screen and (min-width: 768px) {
+    .card{
+        width: 40rem;
+    }
+  }
+
+/* desktop  */
+@media only screen and (min-width: 1024px) {
+    .card{
+        width: 40rem;
+    }
+}

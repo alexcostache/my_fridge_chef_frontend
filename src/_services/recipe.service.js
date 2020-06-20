@@ -2,63 +2,61 @@ import { router } from '../_helpers';
 import config from 'config';
 import { authHeader } from '../_helpers';
 
+const axios = require("axios");
 export const recipeService = {
     findRecipe
 };
 
 
-function findRecipe(data){
-        const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        headers: authHeader(),
-        body: JSON.stringify(data)
-    };
+// async function findRecipe(data){
+    
+//      axios({
+//         "method":"GET",
+//         "url":"https://yummly2.p.rapidapi.com/feeds/search",
+//         "headers":{
+//         "content-type":"application/octet-stream",
+//         "x-rapidapi-host":"yummly2.p.rapidapi.com",
+//         "x-rapidapi-key":"dLmz0VpeZomshQhaJzHOoD1VCO6bp1y16Esjsn4xkEIGRbwwlO",
+//         "useQueryString":true
+//         },"params":{
+//         "FAT_KCALMax":"1000",
+//         "maxTotalTimeInSeconds":"7200",
+//         "allowedAttribute":"",
+//         "q":"pork carrot",
+//         "start":"0",
+//         "maxResult":"18"
+//         }
+//         }).then(function(response) {
+//           return response;
+//         })
+       
+// }
 
-    return fetch(`${config.apiUrl}/users/findRecipe`, requestOptions).then(handleResponse);
 
-}
+async function findRecipe(data){
+  
+  // const Q = data.ingredientsArr.toString().replace(/,/g, ' ');
 
+  const Q = "apple carrot"
 
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                // logout();
-                // location.reload(true);
-                console.log("response 401", response);
-                
-            }
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
+  const requestOptions = {
+    method: 'GET',
+    "headers":{
+      "content-type":"application/octet-stream",
+      "x-rapidapi-host":"yummly2.p.rapidapi.com",
+      "x-rapidapi-key":"dLmz0VpeZomshQhaJzHOoD1VCO6bp1y16Esjsn4xkEIGRbwwlO",
+      "useQueryString":true
+      },
+      "params":{
+        "FAT_KCALMax":"1000",
+        "maxTotalTimeInSeconds":"7200",
+        "allowedAttribute":"",
+        "q":Q,
+        "start":"0",
+        "maxResult":"18"
         }
+};
 
-        return data;
-    });
+return axios("https://yummly2.p.rapidapi.com/feeds/search", requestOptions);
+    
 }
-
-
-
-// function getAll() {
-//     const requestOptions = {
-//         method: 'GET',
-//         headers: authHeader()
-//     };
-
-//     return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
-// }
-
-
-
-// function register(user) {
-//     const requestOptions = {
-//         method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(user)
-//     };
-
-//     return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
-// }

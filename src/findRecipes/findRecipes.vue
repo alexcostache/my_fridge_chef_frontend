@@ -12,10 +12,25 @@
         <input v-model="ingredients" class="form-control margin-top-40" type="text" placeholder="My ingredients..">
         <button class="btn btn-primary margin-top-40">Find Recipe</button>
         <!-- <p v-show="status.searching">Searching Recipe</p> -->
-     
+
        </form>
       
-        <div id="results"></div>
+        <div id="results">
+          <div v-for="item in foundRecipesArr" v-bind:title="item.name" :key="item.id">
+              <div>
+
+                    <div class="card">
+                    <img class="card-img-top" v-bind:src="item.images[0]" alt="Card image cap">
+                    <div class="card-body">
+                    <h5 class="card-title">{{item.name }}</h5>
+                    <p class="card-text">{{item.description}}</p>
+                    </div>
+                    </div>
+
+              </div>
+            </div>
+        </div>
+
         <!-- admins  -->
         <!-- 
         <ul v-if="users.items">
@@ -41,6 +56,7 @@ export default {
       data() {
     return {
       ingredients: "",
+      foundRecipesArr:[],
       submitted: false
     }
   },
@@ -71,10 +87,34 @@ export default {
                  var ingredientsArr = ingredients.split(" ");
 
                 console.log("findRecipe -> ingredientes --",ingredientsArr);
-                console.log("recipeService",recipeService)
-                // send ingredientsArr to find recipe 
-                // request recipe 
-                recipeService.findRecipe({ingredientsArr})
+                
+                var arr = this.foundRecipesArr;
+
+                async function foundRecipes() {
+                const result = await recipeService.findRecipe({ingredientsArr});
+                for (let i = 0; i < result.data.feed.length; i++) {
+                 var _result =  result.data.feed[i];
+                 var recipe = {
+                        name : _result.display.displayName,
+                        images : _result.display.images,
+                        description : _result.content.description.text,
+                        preparationSteps : _result.content.preparationSteps,
+                        ingredientLines : _result.content.ingredientLines,
+                        nutritionEstimates : _result.content.nutrition.nutritionEstimates,
+                        technique : _result.content.tags.technique,
+                        dish : _result.content.tags.dish,
+                        course: _result.content.tags.course,
+                        contentOwner : "Yummly.com"
+                   }
+                    arr.push(recipe)
+                }
+                console.log("foundRecipesArr",arr);
+                }               
+
+
+
+
+                foundRecipes()
             }
         }
     }
