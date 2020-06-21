@@ -70,8 +70,8 @@
                     <div class="spacer_40"></div>
                  
 
-                    <button type="button" class="btn btn-outline-primary" v-on:click="like(index)"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                    <button type="button" class="btn btn-outline-success" v-on:click="addToFavorites(index)"><i class="fa fa-heart red"></i> Add to Favorites</button>
+                    <button type="button" class="btn btn-outline-primary" v-on:click="like()"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                    <button type="button" class="btn btn-outline-success" v-on:click="addToFavorites()"><i class="fa fa-heart red"></i> Add to Favorites</button>
 
                     </div>
                     </div>
@@ -222,6 +222,18 @@ export default {
             this.showModal = false;
             this.UIon = true;
 
+        },
+        like(index){
+           console.log("add like to ", this.recipeInView);
+         
+           
+         recipeService.addLike(this.recipeInView);
+        },
+        addToFavorites(){
+            
+        console.log("add to favourites ", this.recipeInView);
+
+        recipeService.addToFavorites(this.recipeInView); 
         }
     }
 };
