@@ -83,5 +83,13 @@ console.log("added -- favouriteRecipes -- ",user["favouriteRecipes"]);
       body: JSON.stringify(user)
   };
 
-  // return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(handleResponse);
+  
+
+
+  return fetch(`${config.apiUrl}/users/${user._id}`, requestOptions).then(function(response) {
+    return response.json();
+  })
+  .then(function(json) {
+    console.log(json);
+  });
 }
