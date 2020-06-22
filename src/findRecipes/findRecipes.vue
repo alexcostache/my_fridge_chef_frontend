@@ -172,8 +172,8 @@ export default {
             
                 // clear previous search result
                 this.foundRecipesArr = [];
-                var ingredientsArr = ingredients.split(" ");
-                console.log("findRecipe -> ingredientes --",ingredientsArr);
+                var ingredientsQ = ingredients.split(" ");
+                console.log("findRecipe -> ingredientes --",ingredientsQ);
 
                 var disableBtn = this.disableSearchBtb;
                 
@@ -184,24 +184,13 @@ export default {
                 playAnim.play = true;
 
                 async function foundRecipes() {
-                const result = await recipeService.findRecipe({ingredientsArr});
-                for (let i = 0; i < result.data.feed.length; i++) {
-                 var _result =  result.data.feed[i];
-                 var recipe = {
-                        name : _result.display.displayName,
-                        images : _result.display.images,
-                        description : _result.content.description.text.split("The recipe is a Yummly original created by")[0],
-                        preparationSteps : _result.content.preparationSteps,
-                        ingredientLines : _result.content.ingredientLines,
-                        nutritionEstimates : _result.content.nutrition.nutritionEstimates,
-                        technique : _result.content.tags.technique,
-                        dish : _result.content.tags.dish,
-                        course: _result.content.tags.course,
-                        contentOwner : "Yummly.com"
-                   }
-                    arr.push(recipe)
-                }
-                console.log("foundRecipesArr",arr);
+
+              var arrR = await recipeService.findRecipe({ingredientsQ});
+              for (let i = 0; i < arrR.length; i++) {
+                  arr.push(arrR[i])
+              }
+                console.log("foundRecipesArr",typeof(arrR));
+
                 disableBtn.value = false;
                 playAnim.play = false;
                 } 

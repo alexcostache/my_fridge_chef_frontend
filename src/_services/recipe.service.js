@@ -12,29 +12,20 @@ export const recipeService = {
 
 async function findRecipe(data){
   
-  const Q = data.ingredientsArr.toString().replace(/,/g, ' ');
+  // const Q = data.ingredientsArr.toString().replace(/,/g, ' ');
+    var obj
+    const requestOptions = {
+      method: 'POST',
+      headers: { ...authHeader(), 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+  };
 
-  // const Q = "apple carrot"
+  await fetch(`${config.apiUrl}/users/findRecipe`, requestOptions)
+  .then(res => res.json())
+  .then(data => obj = data)
+  // .then(() => console.log(obj))
 
-  const requestOptions = {
-    method: 'GET',
-    "headers":{
-      "content-type":"application/octet-stream",
-      "x-rapidapi-host":"yummly2.p.rapidapi.com",
-      "x-rapidapi-key":"dLmz0VpeZomshQhaJzHOoD1VCO6bp1y16Esjsn4xkEIGRbwwlO",
-      "useQueryString":true
-      },
-      "params":{
-        "maxTotalTimeInSeconds":"7200",
-        "allowedAttribute":"",
-        "q":Q,
-        "start":"0",
-        "maxResult":"18"
-        }
-};
-
-return await axios("https://yummly2.p.rapidapi.com/feeds/search", requestOptions);
-    
+  return JSON.parse(obj)
 }
 
 
