@@ -1,5 +1,5 @@
 <template>
-    <div class="menu">
+    <div id="menu" v-bind:class="{ unBlur: blur }">
         <h1> <router-link to="/home">Home</router-link></h1>
         <h1> <router-link to="/favourites">Favourites</router-link></h1>
         <h1> <router-link to="/findRecipes">Find Recipe</router-link></h1>
@@ -13,9 +13,18 @@
 
 export default {
     name: "Menu",
+    data(){
+        return{
+            blur : false
+        }
+    },
     components: {
         
     },
+     created () {
+    this.blur = false
+    setTimeout(() => {  this.blur = true; }, 200);
+        },
     methods: {
     }
 };
@@ -24,9 +33,12 @@ export default {
 
 <style scoped>
 
-.menu{
+#menu{
     text-align: center;
     padding-top: 25%;
+    background-color: #BADEFC;
+    height: 100vh;
+    filter: blur(10px);
 }
 h1{
     font-size: 2.5em;
@@ -34,6 +46,7 @@ h1{
 }
 a{
     color: #333;
+    text-shadow: 0 0 2px;
 }
 a:hover{
     color: #007bff;
