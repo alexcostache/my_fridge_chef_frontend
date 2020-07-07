@@ -1,5 +1,5 @@
 <template>
-<div class="jumbotron">
+<div class="jumbotron col-xs-12 col-sm-8 col-md-6">
     <div>
         <h2>Login</h2>
         <form @submit.prevent="handleSubmit">

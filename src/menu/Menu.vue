@@ -26,10 +26,16 @@ export default {
 
 .menu{
     text-align: center;
-    margin-top: 40%;
+    padding-top: 25%;
 }
 h1{
-    font-size: 40px;
+    font-size: 2.5em;
     margin: 25px;
+}
+a{
+    color: #333;
+}
+a:hover{
+    color: #007bff;
 }
 </style>

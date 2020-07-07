@@ -4,7 +4,7 @@
 
         <!-- <em v-if="users.loading">Loading users...</em> -->
         <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span>
-
+        <div class="findRecipesContainer"> 
        <!-- recipe modal  -->
         <div id="recipe" v-if="showModal" class="col-md-12">
                     <button type="button" class="close" aria-label="Close" v-on:click="closeRecipe()">
@@ -122,6 +122,7 @@
 
 
         <!-- to be added to menu -->
+    </div>
     </div>
 </template>
 

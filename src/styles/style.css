@@ -15,7 +15,28 @@
 nav{
     margin: 0;
     padding: 0;
-    background-color: aquamarine;
+    background-color: #BADEFC;
+}
+
+.jumbotron{
+    margin: 20% auto 0 auto;
+}
+
+.render{
+    width:100%;
+}
+
+nav{
+    box-shadow: 0 0 5px;
+}
+
+#name{
+    padding: 10px 0px 10px 10px;
+}
+
+.findRecipesContainer{
+    width: 90%;
+    margin: 0 auto;
 }
 
 .navigation{
@@ -35,7 +56,6 @@ nav{
 #myfridgechef{
     background-image: url("/src/assets/images/pattern_bg.png");
     background-color: #2a2a2a;
-    background-size: cover;
     height: 100%;
 }
 
