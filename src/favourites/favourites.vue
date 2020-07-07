@@ -2,11 +2,12 @@
     <div>
         <navigation/>
 
+        <!-- <h1>Hi {{account.user.firstName}}!</h1> -->
+        <h1 class="text-center">Favorites</h1>
         <!-- <em v-if="users.loading">Loading users...</em> -->
-        <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span>
+        <!-- <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span> -->
 
-       <!-- recipe modal  -->
-        <div id="recipe" v-if="showModal" class="col-md-12">
+ <div id="recipe" v-if="showModal" class="col-md-12">
                     <button type="button" class="close" aria-label="Close" v-on:click="closeRecipe()">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -70,55 +71,27 @@
                     <div class="spacer_40"></div>
                  
 
-                    <button type="button" class="btn btn-outline-primary" v-on:click="like()"><i class="fa fa-thumbs-o-up"></i> Like</button>
-                    <button type="button" class="btn btn-outline-success" v-on:click="addToFavorites()"><i class="fa fa-heart red"></i> Add to Favorites</button>
 
                     </div>
                     </div>
         </div>
 
-        <div v-if="UIon">
-
-        <h1 class="text-center">Find Recipe</h1>
-        <!-- recipe find request form  -->
-       <form @submit.prevent="findRecipe_handleSubmit">
-        <input v-model="ingredients" class="form-control margin-top-40" type="text" placeholder="My ingredients..">
-        <button class="btn btn-primary margin-top-40" v-bind:class="{ disabled: disableSearchBtb.value}"><i class="fa fa-search"></i> Find Recipe</button>
-        <!-- <p v-show="status.searching">Searching Recipe</p> -->
-       </form>
-
-        <!-- search animatin  -->
-        <div id="searchAnimation" v-if="searchAnim.play==true"></div>
-
-        <!-- recipe find results -->
-        <div id="results">
-          <div v-for="(item, index) in foundRecipesArr" v-bind:title="item.name" :key="item.id" class="resultRecipe">
+    <div v-if="UIon">
+        <div id="favourites">
+          <div v-for="(item, index) in favouriteRecipes" v-bind:title="item.name" :key="item.id">
                     <div class="card">
                     <img class="card-img-top" v-bind:src="item.images[0]" alt="Card image cap">
                     <div class="card-body">
                     <h5 class="card-title">{{item.name }}</h5>
                     <p class="card-text">{{item.description}}</p>
                     <button type="button" class="btn btn-outline-info" v-on:click="showRecipe(index)">Cook</button>
+                    <button type="button" class="btn btn-outline-danger float-right" v-on:click="removeFav(index)"><i class="fa fa-times red"></i> Remove</button>
+                   
                     </div>
               </div>
             </div>
         </div>
-
-        </div>
-      
-
-
-
-        <!-- admins  -->
-        <!-- 
-        <ul v-if="users.items">
-            <li v-for="user in users.items" :key="user.id">
-                {{user.firstName + ' ' + user.lastName}}
-                <span v-if="user.deleting"><em> - Deleting...</em></span>
-                <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
-                <span v-else> - <a @click="deleteUser(user.id)" class="text-danger">Delete</a></span>
-            </li>
-        </ul> -->
+    </div>
 
 
         <!-- to be added to menu -->
@@ -128,20 +101,14 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 import navigation from '../components/navigation.vue'
-import { recipeService } from '../_services/recipe.service';
-
+import { favouriteService } from '../_services/favourites.service';
 export default {
-      data() {
+          data() {
     return {
       UIon:true,
-      ingredients: "",
-      foundRecipesArr:[],
-      submitted: false,
       showModal: false,
+      favouriteRecipes:[],
       recipeInView:[],
-      searchAnim:{"play":"false"},
-      ownedIngridients: [],
-      disableSearchBtb:{"value":false}
     }
   },
     components: {
@@ -153,77 +120,34 @@ export default {
         ...mapState({
             account: state => state.account,
             users: state => state.users.all
-            
         })
     },
     created () {
         // this should be only for admins
-        // this. ();
+        // this.getAllUsers();
+          var user = JSON.parse(localStorage.getItem('user'));
+          this.favouriteRecipes = user.favouriteRecipes;
     },
+
+    // this should be only for admins
     methods: {
-        // ...mapActions('users', { findRecipe: 'findRecipe' }),
-
-        findRecipe_handleSubmit (e) {
-                const { ingredients } = this;
-         
-
-            if (ingredients && this.disableSearchBtb.value == false) {
-                this.submitted = true;
-            
-                // clear previous search result
-                this.foundRecipesArr = [];
-                var ingredientsQ = ingredients.split(" ");
-                console.log("findRecipe -> ingredientes --",ingredientsQ);
-
-                var disableBtn = this.disableSearchBtb;
-                
-                disableBtn.value = true;
-
-                var arr = this.foundRecipesArr;
-                var playAnim = this.searchAnim;
-                playAnim.play = true;
-
-                async function foundRecipes() {
-
-              var arrR = await recipeService.findRecipe({ingredientsQ});
-              for (let i = 0; i < arrR.length; i++) {
-                  arr.push(arrR[i])
-              }
-                console.log("foundRecipesArr",typeof(arrR));
-
-                disableBtn.value = false;
-                playAnim.play = false;
-                } 
-
-
-
-
-
-                foundRecipes();
+            showRecipe(index){
+                this.recipeInView = this.favouriteRecipes[index];
+                this.showModal = true;
+                this.UIon = false;
+                    },
+             closeRecipe(index){
+                this.showModal = false;
+                this.UIon = true;
+             },
+             removeFav(index){
+                 favouriteService.removeFavorite(index);
+                 var user = JSON.parse(localStorage.getItem('user'));
+                 this.favouriteRecipes = user.favouriteRecipes;
+             }
             }
-        },
-        showRecipe(index){
-            this.recipeInView = this.foundRecipesArr[index];
-            this.showModal = true;
-            this.UIon = false;
-        },
-         closeRecipe(index){
-            this.showModal = false;
-            this.UIon = true;
-
-        },
-        like(index){
-           console.log("add like to ", this.recipeInView);
-         
-           
-         recipeService.addLike(this.recipeInView);
-        },
-        addToFavorites(){
-            
-        console.log("add to favourites ", this.recipeInView);
-
-        recipeService.addToFavorites(this.recipeInView); 
-        }
-    }
 };
 </script>
+<style>
+
+</style>

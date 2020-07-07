@@ -6,6 +6,7 @@ import LoginPage from '../login/LoginPage'
 import RegisterPage from '../register/RegisterPage'
 import Menu from '../menu/Menu'
 import FindRecipe from '../findRecipes/findRecipes.vue'
+import Favourites from '../favourites/favourites.vue'
 
 Vue.use(Router);
 
@@ -18,6 +19,7 @@ export const router = new Router({
     { path: '/menu', component: Menu },
 
     { path: '/findRecipes', component: FindRecipe },
+    { path: '/favourites', component: Favourites },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }
