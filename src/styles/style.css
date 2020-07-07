@@ -16,6 +16,7 @@ nav{
     margin: 0;
     padding: 0;
     background-color: #BADEFC;
+    background-image: url("/src/assets/images/crosshatch_pattern_01.png");
 }
 
 .jumbotron{

@@ -34,6 +34,7 @@ export default {
 <style scoped>
 
 #menu{
+    background-image: url("/src/assets/images/crosshatch_pattern_01.png");
     text-align: center;
     padding-top: 25%;
     background-color: #BADEFC;
