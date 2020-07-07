@@ -57,6 +57,17 @@ function addToFavorites(recipe) {
   var user = JSON.parse(localStorage.getItem('user'));
 
   
+  for (let i = 0; i <  user['favouriteRecipes'].length; i++) {
+    if (user['favouriteRecipes'][i].name == recipe.name) {
+      console.log("already in favorites");
+
+      $.notify("Recipe already in favorites","warn");
+      
+      return
+    }
+    
+  }
+
   user['favouriteRecipes'].push(recipe)
   
 // toDO add valication on button if recipe in localstorage disable button
@@ -81,6 +92,8 @@ console.log("added -- favouriteRecipes -- ",user["favouriteRecipes"]);
     return response.json();
   })
   .then(function(json) {
+    $.notify("Added to favorites.", "success");
     console.log(json);
   });
+  
 }
