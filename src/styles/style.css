@@ -129,7 +129,12 @@ nav{
     transition: 0.5s;
 }
 
-
+#ieBlocker{
+    height: 100vh;
+    width: 100vh;
+    text-align: center;
+    color: red;
+}
 
 /* mobile  */
 @media only screen and (min-width: 350px) {
