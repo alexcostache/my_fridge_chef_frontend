@@ -1,5 +1,5 @@
 <template>
-    <div id="menu" v-bind:class="{ unBlur: blur }">
+    <div id="menu" v-bind:class="{ animate: animate }">
         <h1> <router-link to="/home">Home</router-link></h1>
         <h1> <router-link to="/favourites">Favourites</router-link></h1>
         <h1> <router-link to="/findRecipes">Find Recipe</router-link></h1>
@@ -15,15 +15,15 @@ export default {
     name: "Menu",
     data(){
         return{
-            blur : false
+            animate : false
         }
     },
     components: {
         
     },
      created () {
-    this.blur = false
-    setTimeout(() => {  this.blur = true; }, 200);
+    this.animate = false
+    setTimeout(() => {  this.animate = true; }, 200);
         },
     methods: {
     }
@@ -39,13 +39,16 @@ export default {
     padding-top: 25%;
     background-color: #BADEFC;
     height: 100vh;
-    filter: blur(10px);
+    top: -100vh;
+    position: absolute;
+    width: 100%;
 }
 h1{
     font-size: 2.5em;
     margin: 25px;
 }
 a{
+    font-family: 'IndieFlower';
     color: #333;
     text-shadow: 0 0 2px;
 }

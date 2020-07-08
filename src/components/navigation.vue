@@ -3,8 +3,11 @@
         <nav> 
         <div id="menuBtn">
         <router-link to="/menu"><i class="fas fa-bars"></i></router-link>
-        </div>    
+        </div>
+        <div class="logo-container">
+        <img src="/src/assets/images/chef-hat.png" alt="chef-hat">    
         <p id="name">{{account.user.firstName}}</p>
+        </div>
         <!-- <router-link to="/login">Logut</router-link> -->
         </nav>
       

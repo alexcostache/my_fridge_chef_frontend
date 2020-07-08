@@ -63,3 +63,34 @@
     font-weight: normal;
     font-style: normal;
 }
+
+
+@font-face {
+    font-family: 'IndieFlower-Regular';
+    src: url('fonts/IndieFlower-Regular.eot');
+    src: url('fonts/IndieFlower-Regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/IndieFlower-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'IndieFlower';
+    src: url('fonts/IndieFlower.ttf') format('truetype'),
+         url('fonts/IndieFlower.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'BadScript-Regular';
+    src: url('fonts/BadScript-Regular.eot');
+    src: url('fonts/BadScript-Regular.eot?#iefix') format('embedded-opentype'),
+         url('fonts/BadScript-Regular.ttf') format('truetype'),
+         url('fonts/BadScript-Regular.woff') format('woff'),
+         url('fonts/BadScript-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  

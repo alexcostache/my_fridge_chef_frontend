@@ -17,6 +17,50 @@ nav{
     padding: 0;
     background-color: #BADEFC;
     background-image: url("/src/assets/images/crosshatch_pattern_01.png");
+    height: 110px;
+}
+
+.jumbotron{
+    box-shadow: 0 0 5px;
+    background-image: url("/src/assets/images/crosshatch_pattern_01.png");
+}
+
+.jumbotron h1{
+    font-family: 'IndieFlower';
+    font-weight: bold;
+    color: #007bff;
+    text-shadow: 0 0 1px #000;
+}
+
+.jumbotron h3, .jumbotron label, .jumbotron h2{
+    color: #007bff;
+    text-shadow: 0 0 1px #000;
+}
+
+nav img{
+    width: 60px;
+}
+
+.logo-container{
+    top: 8px;
+    text-align: center;
+    width: 120px;
+    height: 102px;
+    position: absolute;
+}
+
+.social_logos{
+    width: 100%;
+    text-align: center;
+}
+
+.socialLogo{
+    display: inline-block;
+    margin:40px 25px 0 25px;
+}
+
+.socialLogo, .socialLogo img {
+    width: 40px;
 }
 
 .jumbotron{
@@ -33,11 +77,17 @@ nav{
 
 #name{
     padding: 10px 0px 10px 10px;
+    font-family: 'BadScript-Regular';
+    font-size: 1.3em;
+    font-weight: bold;
+    text-transform: capitalize;
+    padding:8px 0 0 0 !important;
+    margin: 0 !important;
 }
 
 .findRecipesContainer{
     width: 90%;
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
 }
 
 .navigation{
@@ -49,9 +99,6 @@ nav{
 #menuBtn{
     font-size: 30px;
     margin-left: 90%;
-}
-#name{
-    width: 50%;
 }
 
 #myfridgechef{
@@ -125,8 +172,8 @@ nav{
     margin: 5px 10px;
 }
 
-.unBlur{
-    filter: blur(0px) !important;
+.animate{
+    top: 0 !important;
     transition: 0.5s;
 }
 

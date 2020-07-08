@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div class="jumbotron col-xs-12 col-sm-8 col-md-6">
         <h2>Register</h2>
         <form @submit.prevent="handleSubmit">
             <div class="form-group">
@@ -28,6 +29,7 @@
                 <router-link to="/login" class="btn btn-link">Cancel</router-link>
             </div>
         </form>
+        </div>
     </div>
 </template>
 

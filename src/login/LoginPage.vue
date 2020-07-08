@@ -1,7 +1,8 @@
 <template>
 <div class="jumbotron col-xs-12 col-sm-8 col-md-6">
     <div>
-        <h2>Login</h2>
+        <h1 class="text-center">My Fridge Chef</h1>
+        <h3>Login</h3>
         <form @submit.prevent="handleSubmit">
             <div class="form-group">
                 <label for="username">Username</label>
@@ -19,6 +20,11 @@
                 <router-link to="/register" class="btn btn-link">Register</router-link>
             </div>
         </form>
+        <div class="social_logos">
+            <div id="facebook" class="socialLogo"><a href="#"><img src="/src/assets/images/facebook-logo.png" alt=""></a></div>
+            <div id="google" class="socialLogo"><a href="#"><img src="/src/assets/images/google-icon.svg" alt=""></a></div>
+            <div id="twitter" class="socialLogo"><a href="#"><img src="/src/assets/images/twitter-logo.png" alt=""></a></div>
+        </div>
     </div>
 </div>
 </template>
