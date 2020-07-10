@@ -35,7 +35,6 @@ async function findRecipe(data){
   const data = {"username":user.username,"recipe":recipe};
 
   console.log("add like -- data", data);
-  
   const requestOptions = {
       method: 'POST',
       headers: { ...authHeader(), 'Content-Type': 'application/json' },
@@ -46,6 +45,11 @@ async function findRecipe(data){
     return response.json();
   })
   .then(function(json) {
+    if (json["status"] == "true") {
+      $.notify("+1 Like","success");
+    }else if (json["status"] == "false") {
+      $.notify("-1 Like", "warn");
+    }
     console.log(json);
   });
 }

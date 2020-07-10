@@ -94,11 +94,12 @@ nav{
     position: sticky;
     top: 0;
     z-index: 1000;
+    margin-bottom: 50px;
 }
 
 #menuBtn{
-    font-size: 30px;
-    margin-left: 90%;
+    font-size: 40px;
+    margin-left: 85%;
 }
 
 #myfridgechef{
@@ -184,16 +185,24 @@ nav{
     color: red;
 }
 
+.rate-nr{
+    padding: 5px 0 0 10px!important;
+}
+
 /* mobile  */
 @media only screen and (min-width: 350px) {
     .card{
-        width: 18rem;
+        width: 23rem;
     }
 }
 /* tablet  */
 @media only screen and (min-width: 768px) {
     .card{
         width: 40rem;
+    }
+    #menuBtn{
+        font-size: 40px;
+        margin-left: 90%;
     }
   }
 
@@ -203,6 +212,9 @@ nav{
         width: 40rem;
     }
 }
+
+
+
 
 /* best match ranking */
 

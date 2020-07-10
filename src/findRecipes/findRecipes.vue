@@ -98,7 +98,7 @@
                     <div class="card-body">
                     <h5 class="card-title">{{item.name }}</h5>
                     <p class="card-text">{{item.description}}</p>
-                    <button type="button" class="btn btn-outline-info" v-on:click="showRecipe(index)">Cook</button>
+                    <button id="cookBtn" type="button" class="btn btn-outline-info" v-on:click="showRecipe(index)">Cook</button>
                     </div>
               </div>
             </div>
@@ -181,6 +181,7 @@ export default {
                 disableBtn.value = true;
 
                 var arr = this.foundRecipesArr;
+                
                 var playAnim = this.searchAnim;
                 playAnim.play = true;
 

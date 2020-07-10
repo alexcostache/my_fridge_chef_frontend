@@ -3,16 +3,14 @@
         <navigation/>
 
         <!-- <h1>Hi {{account.user.firstName}}!</h1> -->
-        <h1 class="text-center">Favorites</h1>
-        <!-- <em v-if="users.loading">Loading users...</em> -->
-        <!-- <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span> -->
-
- <div id="recipe" v-if="showModal" class="col-md-12">
+        <h1 class="text-center">Tranding</h1>
+    <div id="recipe" v-if="showModal" class="col-md-12">
                     <button type="button" class="close" aria-label="Close" v-on:click="closeRecipe()">
                     <span aria-hidden="true">&times;</span>
                     </button>
                     <div class="card recipeCard col-md-12">
                     <h3 class="card-title">{{recipeInView.name }}</h3>
+                    <h6>Likes: <span class="badge badge-info">{{recipeInViewLikes}}</span></h6>
                     <img class="card-img-top" v-bind:src="recipeInView.images[0]" alt="Card image cap">
                     <div class="card-body">
                     <h5>Description:</h5>
@@ -70,6 +68,8 @@
                     </div>
                     <div class="spacer_40"></div>
                  
+                    <button type="button" class="btn btn-outline-primary" v-on:click="like()"><i class="fa fa-thumbs-o-up"></i> Like</button>
+                    <button type="button" class="btn btn-outline-success" v-on:click="addToFavorites()"><i class="fa fa-heart red"></i> Add to Favorites</button>
 
 
                     </div>
@@ -77,75 +77,87 @@
         </div>
 
     <div v-if="UIon">
-        <div id="favourites">
-          <div v-for="(item, index) in favouriteRecipes" v-bind:title="item.name" :key="item.id">
+          <div v-for="(item, index) in likedRecipes" v-bind:title="item.recipe.name" :key="item.id">
                     <div class="card">
-                    <img class="card-img-top" v-bind:src="item.images[0]" alt="Card image cap">
+                    <h5 class="rate-nr text-primary">{{index+1 }}</h5>
+                    <img class="card-img-top" v-bind:src="item.recipe.images[0]" alt="Card image cap">
                     <div class="card-body">
-                    <h5 class="card-title">{{item.name }}</h5>
-                    <p class="card-text">{{item.description}}</p>
+                    <h5 class="card-title">{{item.recipe.name }}</h5>
+                    <h6>Likes: <span class="badge badge-info">{{item.likes}}</span></h6>
+                    <p class="card-text">{{item.recipe.description}}</p>
                     <button id="cookBtn" type="button" class="btn btn-outline-info" v-on:click="showRecipe(index)">Cook</button>
-                    <button type="button" class="btn btn-outline-danger float-right" v-on:click="removeFav(index)"><i class="fa fa-times red"></i> Remove</button>
-                   
                     </div>
               </div>
-            </div>
         </div>
     </div>
 
 
-        <!-- to be added to menu -->
     </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
 import navigation from '../components/navigation.vue'
-import { favouriteService } from '../_services/favourites.service';
-export default {
-          data() {
-    return {
-      UIon:true,
-      showModal: false,
-      favouriteRecipes:[],
-      recipeInView:[],
-    }
-  },
-    components: {
+import { trandingService } from '../_services/tranding.service';
+import { recipeService } from '../_services/recipe.service';
 
+export default {
+      data() {
+    return {
+        likedRecipes:[],
+        UIon:true,
+        showModal: false,
+        recipeInView:[],
+        recipeInViewLikes:[],
+        status:null,
+        error:null
+        }
+    },
+    components: {
     navigation
+    },
+    mounted (){
 
     },
     computed: {
-        ...mapState({
-            account: state => state.account,
-            users: state => state.users.all
-        })
     },
-    created () {
-        // this.getAllUsers();
-          var user = JSON.parse(localStorage.getItem('user'));
-          this.favouriteRecipes = user.favouriteRecipes;
+      created () {   
+          this.run()                 
     },
-
+    
     methods: {
+            run(e){
+                    this.likedRecipes = [];
+                    var likedRecipesArr = this.likedRecipes; 
+
+                    async function getAllLikesRes() {  
+                    var res =  await  trandingService.getAllLikes();
+                        for (let i = 0; i < res.length; i++) {
+                            likedRecipesArr.push(res[i])
+                        }
+                    }
+            getAllLikesRes()
+            },
+            
             showRecipe(index){
-                this.recipeInView = this.favouriteRecipes[index];
+                this.recipeInView = this.likedRecipes[index].recipe;
+                this.recipeInViewLikes = this.likedRecipes[index].likes;
                 this.showModal = true;
                 this.UIon = false;
                     },
              closeRecipe(index){
+                this.run();
                 this.showModal = false;
                 this.UIon = true;
              },
-             removeFav(index){
-                 favouriteService.removeFavorite(index);
-                 var user = JSON.parse(localStorage.getItem('user'));
-                 this.favouriteRecipes = user.favouriteRecipes;
-             }
+            like(index){
+            console.log("add like to ", this.recipeInView);
+            recipeService.addLike(this.recipeInView);
+            },
+            addToFavorites(){
+            console.log("add to favourites ", this.recipeInView);
+            recipeService.addToFavorites(this.recipeInView); 
             }
+    }
 };
 </script>
-<style>
-
-</style>
