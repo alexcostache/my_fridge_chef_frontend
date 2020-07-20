@@ -194,6 +194,7 @@ nav{
     color: red;
 }
 
+
 .rate-nr{
     padding: 5px 0 0 10px!important;
 }
@@ -203,17 +204,24 @@ nav{
     .card{
         width: 23rem;
     }
-}
-/* pablet  */
-@media only screen and (min-width: 550px) {
-    #loadingAnimation{
-        background-image: url("/src/assets/images/loading.gif");
-        min-height: 500px;
+    #searchAnimation {
+        background-image: url(/src/assets/images/search.gif);
+        min-height: 300px;
         background-repeat: no-repeat;
         margin: 0 auto;
         background-position: center;
-        background-size: 50%;
     }
+    
+    #loadingAnimation{
+        background-image: url("/src/assets/images/loading.gif");
+        min-height: 200px;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        background-position: center;
+    }
+}
+/* pablet  */
+@media only screen and (min-width: 550px) {
     .card{
         width: 40rem;
     }
@@ -226,6 +234,22 @@ nav{
     #menuBtn{
         font-size: 40px;
         margin-left: 90%;
+    }
+    #loadingAnimation{
+        background-image: url("/src/assets/images/loading.gif");
+        min-height: 500px;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        background-position: center;
+        background-size: 40%;
+    }
+    #searchAnimation {
+        background-image: url(/src/assets/images/search.gif);
+        min-height: 500px;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        background-position: center;
+        background-size: 65%;
     }
   }
 
