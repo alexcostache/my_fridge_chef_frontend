@@ -49,6 +49,15 @@ nav img{
     position: absolute;
 }
 
+#name{
+    text-emphasis: none;
+    text-decoration: none;
+    color: #000;
+}
+#name:hover{
+    text-decoration: underline;
+}
+
 .social_logos{
     width: 100%;
     text-align: center;
@@ -193,6 +202,20 @@ nav{
 @media only screen and (min-width: 350px) {
     .card{
         width: 23rem;
+    }
+}
+/* pablet  */
+@media only screen and (min-width: 550px) {
+    #loadingAnimation{
+        background-image: url("/src/assets/images/loading.gif");
+        min-height: 500px;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        background-position: center;
+        background-size: 50%;
+    }
+    .card{
+        width: 40rem;
     }
 }
 /* tablet  */

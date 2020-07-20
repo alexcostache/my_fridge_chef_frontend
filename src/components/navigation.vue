@@ -5,8 +5,10 @@
         <router-link to="/menu"><i class="fas fa-bars"></i></router-link>
         </div>
         <div class="logo-container">
-        <img src="/src/assets/images/chef-hat.png" alt="chef-hat">    
-        <p id="name">{{account.user.firstName}}</p>
+            <a href="/">
+                <img src="/src/assets/images/chef-hat.png" alt="chef-hat">    
+                <p id="name">{{account.user.firstName}}</p>
+            </a>
         </div>
         <!-- <router-link to="/login">Logut</router-link> -->
         </nav>
