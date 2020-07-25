@@ -4,9 +4,11 @@
 .margin-top-40{
     margin-top: 40px;
 }
-
 .margin-bot-40{
     margin-top: 40px;
+}
+.margin-top-20{
+    margin-top: 20px;
 }
 .spacer_40{
     min-height: 40px;
@@ -260,8 +262,32 @@ nav{
     }
 }
 
+#carouselExampleIndicators{
+    margin-top:-50px;
+}
+.carousel-item{
+    height: 89vh;
+    background-size: cover;
+    background-position-x: center;
+}
 
+.slide_1{
+    background-image: url("/src/assets/images/carousel/chinh-le-duc-vuDXJ60mJOA-unsplash.jpg");
+    
+}
+.slide_2{
+    background-image: url("/src/assets/images/carousel/katie-smith-uQs1802D0CQ-unsplash.jpg");
+}
+.slide_3{
+    background-image: url("/src/assets/images/carousel/todd-quackenbush-x5SRhkFajrA-unsplash.jpg");
+}
 
+.carousel-caption {
+    bottom: 50%;
+    background-color: rgba(0,0,0,.7);
+    border-radius: 10px;
+    text-shadow: 0 0 5px #000000;
+}
 
 /* best match ranking */
 
