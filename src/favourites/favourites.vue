@@ -4,6 +4,7 @@
 
         <!-- <h1>Hi {{account.user.firstName}}!</h1> -->
         <h1 class="text-center">Favorites</h1>
+        <h5 class="text-center">Total recipes saved: {{favouriteRecipes.length}}</h5>
         <!-- <em v-if="users.loading">Loading users...</em> -->
         <!-- <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span> -->
 
@@ -17,6 +18,7 @@
                     <div class="card-body">
                     <h5>Description:</h5>
                     <p class="card-text">{{recipeInView.description}}</p>
+                    <h5>Time: <span class="text-info">{{recipeInView.totalTime}}</span></h5>
 
                     <h5>Tags:</h5>
 
@@ -30,6 +32,10 @@
 
                     <div>Technique
                     <div v-for="item in recipeInView.technique" v-bind:title="item[0]" :key="item[0]" class="tag">{{item["display-name"]}}</div>
+                    </div>
+
+                     <div>Nutrition
+                    <div v-for="item in recipeInView.nutrition" v-bind:title="item[0]" :key="item[0]" class="tag">{{item["display-name"]}}</div>
                     </div>
                    
                     <div class="spacer_40"></div>
@@ -78,7 +84,7 @@
 
     <div v-if="UIon">
         <div id="favourites">
-          <div v-for="(item, index) in favouriteRecipes" v-bind:title="item.name" :key="item.id">
+        <div v-for="(item, index) in favouriteRecipes" v-bind:title="item.name" :key="item.id">
                     <div class="card">
                     <img class="card-img-top" v-bind:src="item.images[0]" alt="Card image cap">
                     <div class="card-body">

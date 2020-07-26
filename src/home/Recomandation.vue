@@ -22,6 +22,7 @@
                     <div class="card-body">
                     <h5>Description:</h5>
                     <p class="card-text">{{recipeInView.description}}</p>
+                    <h5>Time: <span class="text-info">{{recipeInView.totalTime}}</span></h5>
 
                     <h5>Tags:</h5>
 
@@ -35,6 +36,10 @@
 
                     <div>Technique
                     <div v-for="item in recipeInView.technique" v-bind:title="item[0]" :key="item[0]" class="tag">{{item["display-name"]}}</div>
+                    </div>
+
+                     <div>Nutrition
+                    <div v-for="item in recipeInView.nutrition" v-bind:title="item[0]" :key="item[0]" class="tag">{{item["display-name"]}}</div>
                     </div>
                    
                     <div class="spacer_40"></div>
