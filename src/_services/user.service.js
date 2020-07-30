@@ -77,12 +77,12 @@ function update(user) {
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
-    };
-
-    return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
+        const requestOptions = {
+            method: 'DELETE',
+            headers: authHeader()
+        };
+    
+        return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

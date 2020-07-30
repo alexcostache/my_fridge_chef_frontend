@@ -114,20 +114,6 @@
         </div>
       
 
-
-
-        <!-- admins  -->
-        <!-- 
-        <ul v-if="users.items">
-            <li v-for="user in users.items" :key="user.id">
-                {{user.firstName + ' ' + user.lastName}}
-                <span v-if="user.deleting"><em> - Deleting...</em></span>
-                <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
-                <span v-else> - <a @click="deleteUser(user.id)" class="text-danger">Delete</a></span>
-            </li>
-        </ul> -->
-
-
         <!-- to be added to menu -->
     </div>
     </div>

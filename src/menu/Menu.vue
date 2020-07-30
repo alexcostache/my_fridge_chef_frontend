@@ -1,5 +1,6 @@
 <template>
     <div id="menu" v-bind:class="{ animate: animate }">
+        <h1 v-if="isUserAdmin"> <router-link to="/adminCP">Admin CP</router-link></h1>
         <h1> <router-link to="/home">Home</router-link></h1>
         <h1> <router-link to="/favourites">Favourites</router-link></h1>
         <h1> <router-link to="/findRecipes">Find Recipe</router-link></h1>
@@ -15,7 +16,8 @@ export default {
     name: "Menu",
     data(){
         return{
-            animate : false
+            animate: false,
+            isUserAdmin: false
         }
     },
     components: {
@@ -24,7 +26,9 @@ export default {
      created () {
     this.animate = false
     setTimeout(() => {  this.animate = true; }, 200);
-        },
+    let user = JSON.parse(localStorage.getItem('user'));
+    if (user.userType == "Admin" ){this.isUserAdmin = true} 
+    },
     methods: {
     }
 };

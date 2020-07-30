@@ -8,6 +8,7 @@ import Menu from '../menu/Menu'
 import FindRecipe from '../findRecipes/findRecipes.vue'
 import Favourites from '../favourites/favourites.vue'
 import Tranding from '../tranding/tranding.vue'
+import AdminCP from '../adminCP/adminCP.vue'
 
 Vue.use(Router);
 
@@ -22,6 +23,7 @@ export const router = new Router({
     { path: '/findRecipes', component: FindRecipe },
     { path: '/favourites', component: Favourites },
     { path: '/tranding', component: Tranding },
+    { path: '/adminCP', component: AdminCP },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }
