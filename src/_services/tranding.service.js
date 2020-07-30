@@ -8,7 +8,7 @@ export const trandingService = {
     getAllLikes
 };
 
-
+// Function to get al links from the db
 async function getAllLikes() {
     var resp;
     const requestOptions = {

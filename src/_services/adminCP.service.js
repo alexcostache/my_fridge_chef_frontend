@@ -7,7 +7,7 @@ export const adminCPservice = {
     getAnalytics
 };
 
-
+// Function to GET analytics data from server
 async function getAnalytics() {
   // console.log("GET analytics");
   const requestOptions = {

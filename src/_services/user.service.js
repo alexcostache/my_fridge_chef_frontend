@@ -11,6 +11,7 @@ export const userService = {
     delete: _delete
 };
 
+// Function to login a user
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
@@ -31,11 +32,13 @@ function login(username, password) {
         });
 }
 
+// function to logout a user 
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
 }
 
+// function to register user 
 function register(user) {
     const requestOptions = {
         method: 'POST',
@@ -45,7 +48,7 @@ function register(user) {
 
     return fetch(`${config.apiUrl}/users/register`, requestOptions).then(handleResponse);
 }
-
+// funtion to get all users from db 
 function getAll() {
     const requestOptions = {
         method: 'GET',
@@ -55,7 +58,7 @@ function getAll() {
     return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 }
 
-
+// function to get user by id 
 function getById(id) {
     const requestOptions = {
         method: 'GET',
@@ -65,6 +68,7 @@ function getById(id) {
     return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }
 
+// function to update a user 
 function update(user) {
     const requestOptions = {
         method: 'PUT',
@@ -85,6 +89,7 @@ function _delete(id) {
         return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(handleResponse);
 }
 
+// function to handle responds from the server 
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);

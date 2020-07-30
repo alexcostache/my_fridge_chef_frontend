@@ -7,7 +7,7 @@ export const favouriteService = {
     removeFavorite
 };
 
-
+// Function to remove favorite recipes from user favourite list
 async function removeFavorite(index) {
 
     var user = JSON.parse(localStorage.getItem('user'));

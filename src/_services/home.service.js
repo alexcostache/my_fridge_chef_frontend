@@ -7,7 +7,7 @@ export const homeService = {
   getRecomandations
 };
 
-
+// Function to get recomandations from the server
 async function getRecomandations() {
   // console.log("GET recomandations");
   const requestOptions = {

@@ -29,6 +29,7 @@ async function findRecipe(data){
 }
 
 
+// Function to register links in database
  async function addLike(recipe) {
 
   let user = JSON.parse(localStorage.getItem('user'));
