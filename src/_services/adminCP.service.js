@@ -4,7 +4,8 @@ import { authHeader } from '../_helpers';
 
 const axios = require("axios");
 export const adminCPservice = {
-    getAnalytics
+    getAnalytics,
+    promoteToAdmin
 };
 
 // Function to GET analytics data from server
@@ -19,4 +20,22 @@ async function getAnalytics() {
   .then(function(response) {
     return response.json();
   })
+}
+
+// Function to POST user details data to server used to update userType Admin|Basic
+function promoteToAdmin(userID, userType) {
+
+  var user = JSON.parse(localStorage.getItem('user'));
+
+  const requestOptions = {
+      method: 'POST',
+      headers: { ...authHeader(), 'Content-Type': 'application/json' },
+      body: JSON.stringify({"userID":userID,"userType":userType,"user":user})
+  };
+
+  return fetch(`${config.apiUrl}/users/promoteToAdmin`, requestOptions)
+  .then(function(response) {
+    return response.json();
+  })
+  
 }

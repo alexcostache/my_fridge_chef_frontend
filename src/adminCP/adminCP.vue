@@ -92,7 +92,10 @@
                     <th scope="col">#</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Role</th>
                     <th scope="col">Created Date</th>
+                    <th scope="col">Admin Promote</th>
                     <th scope="col">Delete</th>
                     </tr>
                 </thead>
@@ -100,12 +103,15 @@
                     
                     <tr v-for="(user,index) in users.items" :key="user.id">
                     <th scope="row">{{index+1}}</th>
-
                     <td>{{user.firstName}}</td>
                     <td>{{user.lastName}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.userType}}</td>
                     <td>{{user.createdDate}}</td>
                     <td>
-                    <a v-on:click="deleteUserRequest(user.id)" class="text-danger">Delete</a>
+                    <a v-if="currentUser != user.username" v-on:click="asyncPromoteToAdmin(user.id, user.userType)" class="text-primary">Promote</a></td>
+                    <td>
+                    <a v-if="currentUser != user.username" v-on:click="deleteUserRequest(user.id)" class="text-danger">Delete</a>
                     </td>
                     </tr>
                 </tbody>
@@ -132,7 +138,8 @@ export default {
         showWeaklyAnalyticsToggle:false,
         showMontlyAnalyticsToggle:false,
         showAllAnalyticsToggle:false,
-        analytics:{"data":{}}
+        analytics:{"data":{}},
+        currentUser:""
     }
   },
     components: {
@@ -149,6 +156,9 @@ export default {
     },
     created () {
         // this should be only for admins
+        // prevent admin to overwrite own userType or remove own user
+        var user = JSON.parse(localStorage.getItem('user'));
+        this.currentUser = user.username;
     },
     methods: {
       ...mapActions('users', {
@@ -218,6 +228,10 @@ export default {
             if(conf){
                 deleteUser(id)
             }
+        },
+        asyncPromoteToAdmin(userID, userType){
+            adminCPservice.promoteToAdmin(userID, userType);
+            this.getAllUsers();
         }
     }
 };
