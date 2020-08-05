@@ -19,6 +19,11 @@
                 <div v-if="submitted && errors.has('username')" class="invalid-feedback">{{ errors.first('username') }}</div>
             </div>
             <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" v-model="user.email" v-validate="'required'" name="email" class="form-control" :class="{ 'is-invalid': submitted && errors.has('email') }" />
+                <div v-if="submitted && errors.has('email')" class="invalid-feedback">{{ errors.first('email') }}</div>
+            </div>
+             <div class="form-group">
                 <label htmlFor="password">Password</label>
                 <input type="password" v-model="user.password" v-validate="{ required: true, min: 6 }" name="password" class="form-control" :class="{ 'is-invalid': submitted && errors.has('password') }" />
                 <div v-if="submitted && errors.has('password')" class="invalid-feedback">{{ errors.first('password') }}</div>
@@ -43,6 +48,7 @@ export default {
                 firstName: '',
                 lastName: '',
                 username: '',
+                email:'',
                 password: ''
             },
             submitted: false
