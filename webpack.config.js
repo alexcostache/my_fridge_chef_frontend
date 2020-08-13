@@ -30,8 +30,8 @@ module.exports = {
     externals: {
         // global app config object
         config: JSON.stringify({
-            apiUrl: 'http://161.35.150.211:4000' // devServer ip
-            // apiUrl: 'http://localhost:4000'
+            // apiUrl: 'http://161.35.150.211:4000' // devServer ip
+            apiUrl: 'http://localhost:4000'
         })
     },
     entry: ["babel-polyfill", "./src/index.js"]
